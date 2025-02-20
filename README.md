@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jotter - Activity Note Taking Application
 
-## Getting Started
+A real-time note-taking application designed for caregivers and professionals to track user activities, progress, and behavioral changes over time. Features version control for maintaining accurate historical records.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Frontend**
+  - Next.js 14 (React Framework)
+  - TypeScript
+  - Tailwind CSS
+  - Lucide Icons
+
+- **Backend & API**
+  - tRPC for type-safe API
+  - JSON Server (lightweight database)
+
+- **Development Tools**
+  - Node.js
+  - npm/yarn
+  - Git
+
+## Prerequisites
+
+- Node.js 18.17 or later
+- npm or yarn package manager
+- Git
+
+## Installation & Setup
+
+1. **Clone and Install Dependencies**
+   ```bash
+   git clone <repository-url>
+   cd note-taking
+   npm install
+   ```
+
+2. **Configure JSON Server**
+   - Create a `db.json` file in the root directory
+   - Add initial data structure:
+   ```json
+   {
+     "members": [],
+     "notes": []
+   }
+   ```
+
+3. **Start the Application**
+   ```bash
+   # Terminal 1: Start JSON Server (Database)
+   npm run json-server
+
+   # Terminal 2: Start Next.js Development Server
+   npm run dev
+   ```
+
+4. Access the application at `http://localhost:3000`
+
+## Use Cases
+
+### 1. Care Facility Management
+- Track resident activities and behaviors
+- Monitor daily progress
+- Document medication responses
+- Share updates between shift changes
+- Maintain historical records of care
+
+### 2. Educational Progress Tracking
+- Record student achievements
+- Document behavioral observations
+- Track intervention effectiveness
+- Maintain communication logs
+- Monitor development milestones
+
+### 3. Behavioral Therapy
+- Document session notes
+- Track intervention strategies
+- Record client progress
+- Maintain treatment history
+- Share updates with care team
+
+## Core Features
+
+### User Management
+- Create profiles for residents/clients
+- Edit user information
+- Remove inactive users
+- Quick user switching
+- Auto-select active users
+
+### Note Taking
+- Real-time note creation
+- Chronological organization
+- Date-based grouping
+- Multi-line support
+- Auto-scroll to recent notes
+
+### Version Control
+- Edit history tracking
+- Timestamp preservation
+- Version comparison
+- Change indicators
+- Audit trail maintenance
+
+## Data Management
+
+### User Object Structure
+```typescript
+interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Note Object Structure
+```typescript
+interface Note {
+  id: string;
+  member: string;
+  text: string;
+  timestamp: string;
+  versions?: {
+    text: string;
+    timestamp: string;
+  }[];
+}
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## API Reference
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### User Endpoints
+- `GET /members` - Retrieve all users
+- `POST /members` - Create user
+- `PUT /members/:id` - Update user
+- `DELETE /members/:id` - Remove user
 
-## Learn More
+### Note Endpoints
+- `GET /notes?member=:id` - Get user notes
+- `POST /notes` - Create note
+- `PUT /notes/:id` - Update note
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to the branch
+5. Open a pull request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT License](LICENSE) 
