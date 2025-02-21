@@ -30,8 +30,9 @@ A real-time note-taking application designed for caregivers and professionals to
 1. **Clone and Install Dependencies**
    ```bash
    git clone <repository-url>
-   cd note-taking
-   npm install
+   cd jotter
+   npm install <!-- use --legacy-peer-deps to resolve  -->
+   npm install -g json-server
    ```
 
 2. **Configure JSON Server**
@@ -47,7 +48,7 @@ A real-time note-taking application designed for caregivers and professionals to
 3. **Start the Application**
    ```bash
    # Terminal 1: Start JSON Server (Database)
-   npm run json-server
+   json-server --watch db.json --port <pick your port>
 
    # Terminal 2: Start Next.js Development Server
    npm run dev
